@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kousalya & Sidharth | Wedding Invitation</title>
   
-  <!-- Google Fonts: Traditional serif & festive display fonts -->
+  <!-- Google Fonts: Traditional serif, display & handwritten cursive fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700;900&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Marcellus&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@600;700;900&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Marcellus&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -427,6 +427,73 @@
       transform: translateY(-2px);
     }
 
+    /* LAST FRAME: FULL SIZE FADED DARK PHOTO WITH SIGNATURE */
+    .signature-card {
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .signature-frame-box {
+      width: 100%;
+      height: 480px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid var(--kasavu-gold);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+      background: #000;
+    }
+
+    .signature-frame-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.48) contrast(1.1) saturate(0.85);
+      transform: scale(1.02);
+      transition: transform 3s ease;
+    }
+
+    .signature-frame-box:hover .signature-frame-img {
+      transform: scale(1.05);
+    }
+
+    .signature-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(10,5,5,0.78) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 45px;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .signature-cursive-text {
+      font-family: 'Alex Brush', 'Great Vibes', cursive;
+      color: #ffffff;
+      font-size: 3.2rem;
+      letter-spacing: 2px;
+      line-height: 1.1;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+
+    .signature-sub-tag {
+      font-family: 'Marcellus', serif;
+      color: var(--kasavu-bright);
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 4px;
+      opacity: 0.9;
+    }
+
     /* Floating Music Controller */
     .floating-audio-ctrl {
       position: fixed;
@@ -489,6 +556,8 @@
       .countdown-container { max-width: 100%; gap: 6px; }
       .count-number { font-size: 1.3rem; }
       .ornate-photo-frame { width: 210px; height: 280px; }
+      .signature-frame-box { height: 380px; }
+      .signature-cursive-text { font-size: 2.6rem; }
       .floating-audio-ctrl { bottom: 16px; right: 14px; padding: 6px 12px 6px 8px; }
     }
   </style>
@@ -498,8 +567,8 @@
   <!-- Floating Flower Petals Canvas -->
   <canvas id="petals-canvas"></canvas>
 
-  <!-- Background Music Audio Element -->
-  <audio id="bg-audio" preload="auto" loop>
+  <!-- Background Music Audio Element with sita kalyanam.mp3 -->
+  <audio id="bg-audio" preload="auto" loop autoplay playsinline>
     <source src="sita kalyanam.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
@@ -525,7 +594,6 @@
       <svg class="corner-decor bottom-right" viewBox="0 0 40 40"><path d="M0,40 L0,0 L40,0" stroke-width="4"/></svg>
 
       <div class="header-section">
-        <!-- Golden Ganesha Motif -->
         <div class="ganesha-icon-wrap">
           <svg viewBox="0 0 100 100">
             <path d="M50 8 C40 8 32 15 32 25 C32 35 42 42 42 48 C42 56 36 60 30 64 C25 67 22 72 25 78 C28 84 37 86 46 86 C58 86 67 80 67 68 C67 52 50 48 50 36 C50 25 58 20 62 18 C58 11 54 8 50 8 Z" fill="none" stroke="var(--kasavu-gold)" stroke-width="4" stroke-linecap="round"/>
@@ -661,10 +729,26 @@
       </div>
     </div>
 
+    <!-- PAGE 5: LAST FRAME (FULL-SIZE DARK FADED PHOTO WITH CURSIVE SIGNATURE) -->
+    <div class="invitation-card signature-card">
+      <svg class="corner-decor top-left" viewBox="0 0 40 40"><path d="M0,40 L0,0 L40,0" stroke-width="4"/></svg>
+      <svg class="corner-decor top-right" viewBox="0 0 40 40"><path d="M0,40 L0,0 L40,0" stroke-width="4"/></svg>
+      <svg class="corner-decor bottom-left" viewBox="0 0 40 40"><path d="M0,40 L0,0 L40,0" stroke-width="4"/></svg>
+      <svg class="corner-decor bottom-right" viewBox="0 0 40 40"><path d="M0,40 L0,0 L40,0" stroke-width="4"/></svg>
+
+      <div class="signature-frame-box">
+        <img class="signature-frame-img" src="photo1.jpg" alt="Kousu and Sid">
+        <div class="signature-overlay">
+          <div class="signature-cursive-text">kousu&amp;sid</div>
+          <div class="signature-sub-tag">Forever &amp; Always</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script>
-    // --- 1. Background Music Controller (sita kalyanam.mp3) ---
+    // --- 1. Aggressive Autoplay Audio Engine (sita kalyanam.mp3) ---
     const audio = document.getElementById('bg-audio');
     const musicBtn = document.getElementById('musicToggleBtn');
     const discIcon = document.getElementById('discIcon');
@@ -672,43 +756,77 @@
 
     let isPlaying = false;
 
-    function playAudio() {
-      audio.play().then(() => {
-        isPlaying = true;
-        discIcon.classList.add('playing');
-        statusText.textContent = "Pause Music";
-      }).catch(err => {
-        console.log("Autoplay blocked by browser until user touches page:", err);
-      });
+    function setAudioPlayingUI() {
+      isPlaying = true;
+      discIcon.classList.add('playing');
+      statusText.textContent = "Pause Music";
     }
 
-    function pauseAudio() {
-      audio.pause();
+    function setAudioPausedUI() {
       isPlaying = false;
       discIcon.classList.remove('playing');
       statusText.textContent = "Play Music";
     }
 
-    musicBtn.addEventListener('click', () => {
-      if (isPlaying) {
-        pauseAudio();
-      } else {
-        playAudio();
+    function attemptForcePlay() {
+      audio.muted = false;
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          setAudioPlayingUI();
+          removeForceListeners();
+        }).catch(() => {
+          // If browser strictly blocks unmuted autoplay, start muted and immediately unmute on first gesture
+          audio.muted = true;
+          audio.play().then(() => {
+            setAudioPlayingUI();
+          }).catch(e => console.log("Awaiting first micro-interaction:", e));
+        });
       }
+    }
+
+    function handleFirstUserAction() {
+      if (audio.muted) {
+        audio.muted = false;
+      }
+      if (!isPlaying) {
+        audio.play().then(() => {
+          setAudioPlayingUI();
+        }).catch(err => console.log("Audio play error:", err));
+      }
+      removeForceListeners();
+    }
+
+    const forceEvents = ['touchstart', 'touchend', 'click', 'pointerdown', 'scroll', 'keydown', 'wheel'];
+    function removeForceListeners() {
+      forceEvents.forEach(evt => {
+        window.removeEventListener(evt, handleFirstUserAction, { capture: true });
+        document.removeEventListener(evt, handleFirstUserAction, { capture: true });
+      });
+    }
+
+    // Try immediately on script run and page load
+    attemptForcePlay();
+    window.addEventListener('DOMContentLoaded', attemptForcePlay);
+    window.addEventListener('load', attemptForcePlay);
+
+    // Attach listeners to every interaction event to trigger instantly
+    forceEvents.forEach(evt => {
+      window.addEventListener(evt, handleFirstUserAction, { capture: true, passive: true });
+      document.addEventListener(evt, handleFirstUserAction, { capture: true, passive: true });
     });
 
-    // Auto-trigger audio on first touch/click/scroll
-    function autoStartOnFirstTouch() {
-      if (!isPlaying) {
-        playAudio();
+    // Floating Button Toggle
+    musicBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isPlaying) {
+        audio.pause();
+        setAudioPausedUI();
+      } else {
+        audio.muted = false;
+        audio.play().then(setAudioPlayingUI);
       }
-      document.removeEventListener('click', autoStartOnFirstTouch);
-      document.removeEventListener('touchstart', autoStartOnFirstTouch);
-      document.removeEventListener('scroll', autoStartOnFirstTouch);
-    }
-    document.addEventListener('click', autoStartOnFirstTouch);
-    document.addEventListener('touchstart', autoStartOnFirstTouch);
-    document.addEventListener('scroll', autoStartOnFirstTouch);
+    });
 
     // --- 2. Live Countdown Timer (Target: Nov 29, 2026, 09:30 AM IST) ---
     const weddingDate = new Date("November 29, 2026 09:30:00").getTime();
@@ -720,7 +838,7 @@
       if (distance > 0) {
         document.getElementById("days").innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
         document.getElementById("hours").innerText = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-        document.getElementById("minutes").innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        document.getElementById("minutes").innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60 * 60))).padStart(2, '0');
         document.getElementById("seconds").innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
       } else {
         document.querySelector(".countdown-container").innerHTML = "<div style='grid-column: span 4; text-align:center; font-weight:bold; color:var(--sindoor-red); padding:10px;'>The Auspicious Celebrations Have Begun!</div>";
