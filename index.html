@@ -8,7 +8,7 @@
   <!-- Google Fonts: Traditional serif, display & handwritten cursive fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@600;700;900&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Marcellus&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@600;700;900&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&family=Marcellus&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -106,35 +106,40 @@
     /* Header & Ganesha */
     .header-section {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
-    .ganesha-icon-wrap {
-      width: 80px;
-      height: 80px;
+    .ganesha-img-wrap {
+      width: 95px;
+      height: auto;
       margin: 0 auto 12px;
-      filter: drop-shadow(0 4px 10px rgba(197, 155, 39, 0.35));
+      filter: drop-shadow(0 4px 12px rgba(197, 155, 39, 0.45));
     }
 
-    .ganesha-icon-wrap svg {
+    .ganesha-img-wrap img {
       width: 100%;
-      height: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
     }
 
-    .shloka {
-      font-size: 1.15rem;
-      letter-spacing: 2.5px;
+    /* Traditional Sanskrit invocation in English with gentle italics */
+    .shloka-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      letter-spacing: 1.5px;
       color: var(--sindoor-red);
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-weight: 600;
+      margin-bottom: 6px;
     }
 
     .sub-shloka {
-      font-size: 0.85rem;
-      letter-spacing: 1.5px;
+      font-size: 0.8rem;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
       color: var(--kasavu-gold);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     /* Couple Names */
@@ -143,30 +148,35 @@
       padding: 10px 0 20px;
     }
 
+    /* Reduced font size for intro invitation line */
     .intro-text {
-      font-size: 0.95rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 1.8px;
       color: var(--text-muted);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.5;
     }
 
-    .couple-title {
-      font-family: 'Cinzel Decorative', cursive, serif;
-      font-size: 2.5rem;
-      font-weight: 900;
+    /* Running writing / Cursive Script for Couple Names */
+    .couple-title-running {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5rem;
+      font-weight: 400;
       color: var(--sindoor-dark);
-      line-height: 1.25;
-      text-shadow: 1px 1px 2px rgba(110, 19, 19, 0.15);
+      line-height: 1.15;
+      text-shadow: 1px 2px 4px rgba(110, 19, 19, 0.12);
+      letter-spacing: 1px;
     }
 
     .couple-amp {
       display: block;
-      font-family: 'Great Vibes', cursive;
-      font-size: 3rem;
+      font-family: 'Alex Brush', cursive;
+      font-size: 2.8rem;
       color: var(--kasavu-gold);
-      line-height: 0.8;
-      margin: 8px 0;
+      line-height: 0.85;
+      margin: 4px 0 8px;
     }
 
     /* Countdown Timer */
@@ -427,7 +437,7 @@
       transform: translateY(-2px);
     }
 
-    /* LAST FRAME: FULL SIZE FADED DARK PHOTO WITH SIGNATURE */
+    /* Closing Frame: Full size dark faded photo with signature */
     .signature-card {
       padding: 16px;
       position: relative;
@@ -476,7 +486,7 @@
     }
 
     .signature-cursive-text {
-      font-family: 'Alex Brush', 'Great Vibes', cursive;
+      font-family: 'Alex Brush', cursive;
       color: #ffffff;
       font-size: 3.2rem;
       letter-spacing: 2px;
@@ -551,8 +561,8 @@
     }
 
     @media (max-width: 600px) {
-      .couple-title { font-size: 2rem; }
-      .couple-amp { font-size: 2.4rem; }
+      .couple-title-running { font-size: 2.8rem; }
+      .couple-amp { font-size: 2.2rem; }
       .countdown-container { max-width: 100%; gap: 6px; }
       .count-number { font-size: 1.3rem; }
       .ornate-photo-frame { width: 210px; height: 280px; }
@@ -594,24 +604,19 @@
       <svg class="corner-decor bottom-right" viewBox="0 0 40 40"><path d="M0,40 L0,0 L40,0" stroke-width="4"/></svg>
 
       <div class="header-section">
-        <div class="ganesha-icon-wrap">
-          <svg viewBox="0 0 100 100">
-            <path d="M50 8 C40 8 32 15 32 25 C32 35 42 42 42 48 C42 56 36 60 30 64 C25 67 22 72 25 78 C28 84 37 86 46 86 C58 86 67 80 67 68 C67 52 50 48 50 36 C50 25 58 20 62 18 C58 11 54 8 50 8 Z" fill="none" stroke="var(--kasavu-gold)" stroke-width="4" stroke-linecap="round"/>
-            <path d="M42 30 Q50 38 58 30" fill="none" stroke="var(--sindoor-red)" stroke-width="3" stroke-linecap="round"/>
-            <circle cx="50" cy="22" r="3" fill="var(--sindoor-red)"/>
-            <path d="M60 48 Q72 50 74 62 Q75 72 65 74" fill="none" stroke="var(--kasavu-bright)" stroke-width="3.5" stroke-linecap="round"/>
-            <circle cx="34" cy="46" r="3.5" fill="var(--kasavu-gold)"/>
-          </svg>
+        <!-- Traditional Seated Lord Ganesha Image -->
+        <div class="ganesha-img-wrap">
+          <img src="ganesha.png" alt="Lord Ganesha">
         </div>
-        <div class="shloka">॥ श्री गणेशाय नमः ॥</div>
+        <div class="shloka-text">Sree Kuladevatha Prasanna</div>
         <div class="sub-shloka">With the divine blessings of our ancestors</div>
       </div>
 
       <div class="names-section">
         <p class="intro-text">We cordially invite you with family to celebrate the wedding of</p>
-        <div class="couple-title">Kousalya</div>
+        <div class="couple-title-running">Kousalya</div>
         <div class="couple-amp">&</div>
-        <div class="couple-title">Sidharth</div>
+        <div class="couple-title-running">Sidharth</div>
       </div>
 
       <!-- Live Wedding Countdown Timer -->
@@ -776,7 +781,7 @@
           setAudioPlayingUI();
           removeForceListeners();
         }).catch(() => {
-          // If browser strictly blocks unmuted autoplay, start muted and immediately unmute on first gesture
+          // Fallback: start muted and unmute immediately on first gesture
           audio.muted = true;
           audio.play().then(() => {
             setAudioPlayingUI();
@@ -810,7 +815,7 @@
     window.addEventListener('DOMContentLoaded', attemptForcePlay);
     window.addEventListener('load', attemptForcePlay);
 
-    // Attach listeners to every interaction event to trigger instantly
+    // Attach listeners to trigger instantly on interaction
     forceEvents.forEach(evt => {
       window.addEventListener(evt, handleFirstUserAction, { capture: true, passive: true });
       document.addEventListener(evt, handleFirstUserAction, { capture: true, passive: true });
@@ -838,7 +843,7 @@
       if (distance > 0) {
         document.getElementById("days").innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
         document.getElementById("hours").innerText = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-        document.getElementById("minutes").innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60 * 60))).padStart(2, '0');
+        document.getElementById("minutes").innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
         document.getElementById("seconds").innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
       } else {
         document.querySelector(".countdown-container").innerHTML = "<div style='grid-column: span 4; text-align:center; font-weight:bold; color:var(--sindoor-red); padding:10px;'>The Auspicious Celebrations Have Begun!</div>";
