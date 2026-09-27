@@ -123,7 +123,6 @@
       object-fit: contain;
     }
 
-    /* Traditional Sanskrit invocation in English with gentle italics */
     .shloka-text {
       font-family: 'Playfair Display', serif;
       font-style: italic;
@@ -142,13 +141,12 @@
       margin-bottom: 16px;
     }
 
-    /* Couple Names */
+    /* Couple Names Section */
     .names-section {
       text-align: center;
       padding: 10px 0 20px;
     }
 
-    /* Reduced font size for intro invitation line */
     .intro-text {
       font-size: 0.78rem;
       text-transform: uppercase;
@@ -159,24 +157,78 @@
       line-height: 1.5;
     }
 
-    /* Running writing / Cursive Script for Couple Names */
-    .couple-title-running {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3.5rem;
-      font-weight: 400;
-      color: var(--sindoor-dark);
-      line-height: 1.15;
-      text-shadow: 1px 2px 4px rgba(110, 19, 19, 0.12);
-      letter-spacing: 1px;
+    /* DYNAMIC HANDWRITTEN RUNNING TEXT (SVG Inking Animation) */
+    .animated-names-box {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .couple-amp {
-      display: block;
+    .dynamic-script-svg {
+      width: 100%;
+      height: auto;
+      overflow: visible;
+      filter: drop-shadow(0 3px 6px rgba(110, 19, 19, 0.15));
+    }
+
+    /* Pen-stroke path drawing animation */
+    .draw-pen-line {
+      font-family: 'Great Vibes', cursive;
+      font-size: 70px;
+      fill: transparent;
+      stroke: var(--sindoor-dark);
+      stroke-width: 1.4;
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      animation: writeStroke 3s cubic-bezier(0.45, 0, 0.2, 1) forwards, fillStroke 1.2s ease forwards 2.3s;
+    }
+
+    .draw-amp-line {
       font-family: 'Alex Brush', cursive;
-      font-size: 2.8rem;
-      color: var(--kasavu-gold);
-      line-height: 0.85;
-      margin: 4px 0 8px;
+      font-size: 58px;
+      fill: transparent;
+      stroke: var(--kasavu-gold);
+      stroke-width: 1.6;
+      stroke-dasharray: 300;
+      stroke-dashoffset: 300;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      animation: writeAmp 1.8s cubic-bezier(0.45, 0, 0.2, 1) forwards 1s, fillAmp 1s ease forwards 2.3s;
+    }
+
+    .draw-pen-line.second-name {
+      animation: writeStroke 3s cubic-bezier(0.45, 0, 0.2, 1) forwards 1.4s, fillStroke 1.2s ease forwards 3.2s;
+    }
+
+    @keyframes writeStroke {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes fillStroke {
+      to {
+        fill: var(--sindoor-dark);
+        stroke-width: 0.6;
+      }
+    }
+
+    @keyframes writeAmp {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes fillAmp {
+      to {
+        fill: var(--kasavu-gold);
+        stroke-width: 0.5;
+      }
     }
 
     /* Countdown Timer */
@@ -233,7 +285,7 @@
       border-radius: 2px;
     }
 
-    /* Couple Photo Frame (Page 2) */
+    /* Couple Photo Frame */
     .photo-frame-container {
       text-align: center;
       margin: 20px 0 10px;
@@ -561,8 +613,6 @@
     }
 
     @media (max-width: 600px) {
-      .couple-title-running { font-size: 2.8rem; }
-      .couple-amp { font-size: 2.2rem; }
       .countdown-container { max-width: 100%; gap: 6px; }
       .count-number { font-size: 1.3rem; }
       .ornate-photo-frame { width: 210px; height: 280px; }
@@ -596,7 +646,7 @@
 
   <div class="page-wrapper">
 
-    <!-- PAGE 1: AUSPICIOUS INVOCATION & TITLE -->
+    <!-- PAGE 1: AUSPICIOUS INVOCATION & DYNAMIC HANDWRITTEN NAMES -->
     <div class="invitation-card">
       <svg class="corner-decor top-left" viewBox="0 0 40 40"><path d="M0,40 L0,0 L40,0" stroke-width="4"/></svg>
       <svg class="corner-decor top-right" viewBox="0 0 40 40"><path d="M0,40 L0,0 L40,0" stroke-width="4"/></svg>
@@ -604,7 +654,6 @@
       <svg class="corner-decor bottom-right" viewBox="0 0 40 40"><path d="M0,40 L0,0 L40,0" stroke-width="4"/></svg>
 
       <div class="header-section">
-        <!-- Traditional Seated Lord Ganesha Image -->
         <div class="ganesha-img-wrap">
           <img src="ganesha.png" alt="Lord Ganesha">
         </div>
@@ -614,9 +663,20 @@
 
       <div class="names-section">
         <p class="intro-text">We cordially invite you with family to celebrate the wedding of</p>
-        <div class="couple-title-running">Kousalya</div>
-        <div class="couple-amp">&</div>
-        <div class="couple-title-running">Sidharth</div>
+        
+        <!-- Dynamic Handwritten SVG Drawing Canvas -->
+        <div class="animated-names-box">
+          <svg class="dynamic-script-svg" viewBox="0 0 460 210">
+            <!-- First Name: Kousalya -->
+            <text x="230" y="68" text-anchor="middle" class="draw-pen-line">Kousalya</text>
+            
+            <!-- Ampersand: & -->
+            <text x="230" y="125" text-anchor="middle" class="draw-amp-line">&amp;</text>
+            
+            <!-- Second Name: Sidharth -->
+            <text x="230" y="190" text-anchor="middle" class="draw-pen-line second-name">Sidharth</text>
+          </svg>
+        </div>
       </div>
 
       <!-- Live Wedding Countdown Timer -->
@@ -810,18 +870,15 @@
       });
     }
 
-    // Try immediately on script run and page load
     attemptForcePlay();
     window.addEventListener('DOMContentLoaded', attemptForcePlay);
     window.addEventListener('load', attemptForcePlay);
 
-    // Attach listeners to trigger instantly on interaction
     forceEvents.forEach(evt => {
       window.addEventListener(evt, handleFirstUserAction, { capture: true, passive: true });
       document.addEventListener(evt, handleFirstUserAction, { capture: true, passive: true });
     });
 
-    // Floating Button Toggle
     musicBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       if (isPlaying) {
