@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kousalya & Sidharth | Wedding Invitation</title>
+  
+  <!-- Google Fonts: Traditional serif & festive display fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700;900&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Marcellus&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --sindoor-dark: #6e1313;
+      --sindoor-red: #8B1E1E;
+      --sindoor-light: #ab2828;
+      --kasavu-gold: #c59b27;
+      --kasavu-bright: #e7c358;
+      --kasavu-glow: #fae08d;
+      --parchment: #fdfaf4;
+      --silk-cream: #f6eedb;
+      --text-muted: #5e463a;
+      --shadow-warm: rgba(110, 19, 19, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--parchment);
+      color: var(--sindoor-dark);
+      font-family: 'Marcellus', serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(231, 195, 88, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(139, 30, 30, 0.06) 0%, transparent 45%);
+    }
+
+    /* Falling Petals Canvas Overlay */
+    #petals-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 99;
+    }
+
+    /* Container wrapper */
+    .page-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 24px 16px 80px 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Traditional Temple Arch Borders */
+    .invitation-card {
+      background: #ffffff;
+      border: 2px solid var(--kasavu-gold);
+      border-radius: 20px;
+      box-shadow: 0 15px 40px var(--shadow-warm), 0 2px 10px rgba(0,0,0,0.04);
+      padding: 40px 24px;
+      position: relative;
+      margin-bottom: 32px;
+      background-image: linear-gradient(to bottom, #ffffff, #fdfbf7);
+    }
+
+    .invitation-card::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+      border: 1px dashed var(--kasavu-gold);
+      border-radius: 14px;
+      pointer-events: none;
+    }
+
+    /* Corner Mandala / Kolam motifs */
+    .corner-decor {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      stroke: var(--kasavu-gold);
+      fill: none;
+      pointer-events: none;
+    }
+    .top-left { top: 12px; left: 12px; }
+    .top-right { top: 12px; right: 12px; transform: rotate(90deg); }
+    .bottom-left { bottom: 12px; left: 12px; transform: rotate(-90deg); }
+    .bottom-right { bottom: 12px; right: 12px; transform: rotate(180deg); }
+
+    /* Header & Ganesha */
+    .header-section {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .ganesha-icon-wrap {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 12px;
+      filter: drop-shadow(0 4px 10px rgba(197, 155, 39, 0.35));
+    }
+
+    .ganesha-icon-wrap svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .shloka {
+      font-size: 1.15rem;
+      letter-spacing: 2.5px;
+      color: var(--sindoor-red);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .sub-shloka {
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--kasavu-gold);
+      margin-bottom: 18px;
+    }
+
+    /* Couple Names */
+    .names-section {
+      text-align: center;
+      padding: 10px 0 20px;
+    }
+
+    .intro-text {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .couple-title {
+      font-family: 'Cinzel Decorative', cursive, serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--sindoor-dark);
+      line-height: 1.25;
+      text-shadow: 1px 1px 2px rgba(110, 19, 19, 0.15);
+    }
+
+    .couple-amp {
+      display: block;
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: var(--kasavu-gold);
+      line-height: 0.8;
+      margin: 8px 0;
+    }
+
+    /* Countdown Timer */
+    .countdown-container {
+      margin: 28px auto 10px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 480px;
+    }
+
+    .count-box {
+      background: var(--silk-cream);
+      border: 1px solid var(--kasavu-bright);
+      border-radius: 12px;
+      padding: 12px 6px;
+      text-align: center;
+      box-shadow: inset 0 0 10px rgba(231, 195, 88, 0.15);
+    }
+
+    .count-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--sindoor-red);
+      display: block;
+      line-height: 1.1;
+    }
+
+    .count-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+    }
+
+    /* Section Titles */
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem;
+      color: var(--sindoor-red);
+      position: relative;
+      margin-bottom: 22px;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 70px;
+      height: 2px;
+      background: var(--kasavu-gold);
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Couple Photo Frame (Page 2) */
+    .photo-frame-container {
+      text-align: center;
+      margin: 20px 0 10px;
+    }
+
+    .ornate-photo-frame {
+      width: 250px;
+      height: 330px;
+      margin: 0 auto;
+      border: 4px solid var(--kasavu-gold);
+      border-radius: 130px 130px 18px 18px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(110, 19, 19, 0.2);
+      background: var(--silk-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ornate-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Captured Memories 4-Photo Carousel */
+    .carousel-wrapper {
+      position: relative;
+      margin: 24px 0 10px;
+    }
+
+    .memories-carousel {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 10px 4px 18px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--kasavu-gold) var(--silk-cream);
+    }
+
+    .memories-carousel::-webkit-scrollbar {
+      height: 6px;
+    }
+    .memories-carousel::-webkit-scrollbar-track {
+      background: var(--silk-cream);
+      border-radius: 4px;
+    }
+    .memories-carousel::-webkit-scrollbar-thumb {
+      background: var(--kasavu-gold);
+      border-radius: 4px;
+    }
+
+    .memory-card {
+      flex: 0 0 220px;
+      scroll-snap-align: start;
+      background: #ffffff;
+      border: 1.5px solid var(--kasavu-bright);
+      border-radius: 14px;
+      padding: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+      text-align: center;
+      position: relative;
+    }
+
+    .memory-img-box {
+      width: 100%;
+      height: 240px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--silk-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .memory-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .memory-caption {
+      font-size: 0.85rem;
+      color: var(--sindoor-red);
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    .carousel-nav-btn {
+      position: absolute;
+      top: 45%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      background: var(--sindoor-red);
+      color: #fff;
+      border: 2px solid var(--kasavu-bright);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      z-index: 5;
+    }
+    .carousel-nav-btn:hover {
+      background: var(--sindoor-dark);
+    }
+    .prev-btn { left: -10px; }
+    .next-btn { right: -10px; }
+
+    /* Venue & Details Section */
+    .event-details-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .event-card {
+      background: var(--silk-cream);
+      border-left: 4px solid var(--kasavu-gold);
+      border-radius: 0 14px 14px 0;
+      padding: 18px 20px;
+    }
+
+    .event-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--sindoor-red);
+      margin-bottom: 6px;
+    }
+
+    .event-time {
+      font-weight: bold;
+      color: var(--kasavu-gold);
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .venue-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--sindoor-dark);
+      margin-bottom: 4px;
+    }
+
+    .venue-location {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    /* Buttons */
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--sindoor-red), var(--sindoor-dark));
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(139, 30, 30, 0.3);
+      border: 1px solid var(--kasavu-gold);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 30, 30, 0.4);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--kasavu-bright), var(--kasavu-gold));
+      color: var(--sindoor-dark);
+      box-shadow: 0 4px 14px rgba(197, 155, 39, 0.3);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Floating Music Controller */
+    .floating-audio-ctrl {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid var(--kasavu-gold);
+      padding: 8px 16px 8px 10px;
+      border-radius: 40px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: transform 0.2s ease;
+    }
+    .floating-audio-ctrl:active {
+      transform: scale(0.96);
+    }
+
+    .disc-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--sindoor-red);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: spin 4s linear infinite;
+      animation-play-state: paused;
+    }
+    .disc-icon.playing {
+      animation-play-state: running;
+    }
+
+    .disc-icon svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .music-text-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--sindoor-dark);
+      letter-spacing: 0.5px;
+      line-height: 1.1;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+      .couple-title { font-size: 2rem; }
+      .couple-amp { font-size: 2.4rem; }
+      .countdown-container { max-width: 100%; gap: 6px; }
+      .count-number { font-size: 1.3rem; }
+      .ornate-photo-frame { width: 210px; height: 280px; }
+      .floating-audio-ctrl { bottom: 16px; right: 14px; padding: 6px 12px 6px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Flower Petals Canvas -->
+  <canvas id="petals-canvas"></canvas>
+
+  <!-- Background Music Audio Element -->
+  <audio id="bg-audio" preload="auto" loop>
+    <source src="sita kalyanam.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Floating Audio Toggle Button -->
+  <div class="floating-audio-ctrl" id="musicToggleBtn" title="Click to play or pause">
+    <div class="disc-icon" id="discIcon">
+      <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+    </div>
+    <div class="music-text-label">
+      <span id="musicStatusText">Play Music</span><br>
+      <small style="color:var(--kasavu-gold); font-size:0.65rem;">Sita Kalyanam</small>
+    </div>
+  </div>
+
+  <div class="page-wrapper">
+
+    <!-- PAGE 1: AUSPICIOUS INVOCATION & TITLE -->
+    <div class="invitation-card">
+      <svg class="corner-decor top-left" viewBox="0 0 40 40"><path d="M0,40 L0,0 L40,0" stroke-width="4"/></svg>
+      <svg class="corner-decor top-right" viewBox="0 0 40 40"><path d="M0,40 L0,0 L40,0" stroke-width="4"/></svg>
+      <svg class="corner-decor bottom-left" viewBox="0 0 40 40"><path d="M0,40 L0,0 L40,0" stroke-width="4"/></svg>
+      <svg class="corner-decor bottom-right" viewBox="0 0 40 40"><path d="M0,40 L0,0 L40,0" stroke-width="4"/></svg>
+
+      <div class="header-section">
+        <!-- Golden Ganesha Motif -->
+        <div class="ganesha-icon-wrap">
+          <svg viewBox="0 0 100 100">
+            <path d="M50 8 C40 8 32 15 32 25 C32 35 42 42 42 48 C42 56 36 60 30 64 C25 67 22 72 25 78 C28 84 37 86 46 86 C58 86 67 80 67 68 C67 52 50 48 50 36 C50 25 58 20 62 18 C58 11 54 8 50 8 Z" fill="none" stroke="var(--kasavu-gold)" stroke-width="4" stroke-linecap="round"/>
+            <path d="M42 30 Q50 38 58 30" fill="none" stroke="var(--sindoor-red)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="50" cy="22" r="3" fill="var(--sindoor-red)"/>
+            <path d="M60 48 Q72 50 74 62 Q75 72 65 74" fill="none" stroke="var(--kasavu-bright)" stroke-width="3.5" stroke-linecap="round"/>
+            <circle cx="34" cy="46" r="3.5" fill="var(--kasavu-gold)"/>
+          </svg>
+        </div>
+        <div class="shloka">॥ श्री गणेशाय नमः ॥</div>
+        <div class="sub-shloka">With the divine blessings of our ancestors</div>
+      </div>
+
+      <div class="names-section">
+        <p class="intro-text">We cordially invite you with family to celebrate the wedding of</p>
+        <div class="couple-title">Kousalya</div>
+        <div class="couple-amp">&</div>
+        <div class="couple-title">Sidharth</div>
+      </div>
+
+      <!-- Live Wedding Countdown Timer -->
+      <div class="countdown-container">
+        <div class="count-box">
+          <span class="count-number" id="days">00</span>
+          <span class="count-label">Days</span>
+        </div>
+        <div class="count-box">
+          <span class="count-number" id="hours">00</span>
+          <span class="count-label">Hours</span>
+        </div>
+        <div class="count-box">
+          <span class="count-number" id="minutes">00</span>
+          <span class="count-label">Mins</span>
+        </div>
+        <div class="count-box">
+          <span class="count-number" id="seconds">00</span>
+          <span class="count-label">Secs</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 2: COUPLE PHOTO SPACE -->
+    <div class="invitation-card">
+      <h2 class="section-title">The Happy Couple</h2>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+        Two hearts, one soul, beginning their lifetime journey together.
+      </p>
+
+      <div class="photo-frame-container">
+        <div class="ornate-photo-frame">
+          <img src="photo1.jpg" alt="Kousalya & Sidharth">
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 3: CAPTURED MEMORIES (4 PHOTOS) -->
+    <div class="invitation-card">
+      <h2 class="section-title">Captured Memories</h2>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.95rem;">
+        Cherished moments from our celebration
+      </p>
+
+      <div class="carousel-wrapper">
+        <button class="carousel-nav-btn prev-btn" onclick="scrollCarousel(-260)">❮</button>
+        <button class="carousel-nav-btn next-btn" onclick="scrollCarousel(260)">❯</button>
+
+        <div class="memories-carousel" id="memoriesCarousel">
+          <div class="memory-card">
+            <div class="memory-img-box">
+              <img src="photo1.jpg" alt="Memory 1">
+            </div>
+            <div class="memory-caption">The Auspicious Beginning</div>
+          </div>
+
+          <div class="memory-card">
+            <div class="memory-img-box">
+              <img src="photo2.jpg" alt="Memory 2">
+            </div>
+            <div class="memory-caption">Cherished Moments</div>
+          </div>
+
+          <div class="memory-card">
+            <div class="memory-img-box">
+              <img src="photo3.jpg" alt="Memory 3">
+            </div>
+            <div class="memory-caption">Exchange of Rings</div>
+          </div>
+
+          <div class="memory-card">
+            <div class="memory-img-box">
+              <img src="photo4.jpg" alt="Memory 4">
+            </div>
+            <div class="memory-caption">Sweet Blessings</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 4: CEREMONY, VENUE & LOCATION -->
+    <div class="invitation-card">
+      <h2 class="section-title">Muhurtham & Venue</h2>
+
+      <div class="event-details-grid">
+        <div class="event-card">
+          <div class="event-heading">Auspicious Wedding Ceremony</div>
+          <div class="event-time">🗓️ Sunday, November 29, 2026 | Morning 9:30 AM – 10:30 AM</div>
+          <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:12px;">Followed by traditional Kerala Sadhyas and lunch reception.</p>
+          
+          <div class="venue-name">📍 Sree Vaikundam Kalyana Mandapam</div>
+          <div class="venue-location">Trivandrum, Kerala</div>
+
+          <div class="button-group">
+            <a href="https://maps.app.goo.gl/68uWwj9VHb4LpovB8" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              View on Google Maps
+            </a>
+
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+of+Kousalya+and+Sidharth&dates=20261129T040000Z/20261129T080000Z&details=Wedding+Ceremony+at+Sree+Vaikundam+Kalyana+Mandapam&location=Sree+Vaikundam+Kalyana+Mandapam,+Trivandrum" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+              Add to Calendar
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 36px;">
+        <p style="font-family:'Playfair Display', serif; font-size:1.15rem; color:var(--sindoor-red);">
+          "We eagerly look forward to welcoming you and celebrating this sacred milestone together."
+        </p>
+        <p style="font-size:0.85rem; color:var(--kasavu-gold); letter-spacing:1px; margin-top:10px;">
+          Warm Regards,<br><strong>Family of Kousalya & Sidharth</strong>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // --- 1. Background Music Controller (sita kalyanam.mp3) ---
+    const audio = document.getElementById('bg-audio');
+    const musicBtn = document.getElementById('musicToggleBtn');
+    const discIcon = document.getElementById('discIcon');
+    const statusText = document.getElementById('musicStatusText');
+
+    let isPlaying = false;
+
+    function playAudio() {
+      audio.play().then(() => {
+        isPlaying = true;
+        discIcon.classList.add('playing');
+        statusText.textContent = "Pause Music";
+      }).catch(err => {
+        console.log("Autoplay blocked by browser until user touches page:", err);
+      });
+    }
+
+    function pauseAudio() {
+      audio.pause();
+      isPlaying = false;
+      discIcon.classList.remove('playing');
+      statusText.textContent = "Play Music";
+    }
+
+    musicBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        pauseAudio();
+      } else {
+        playAudio();
+      }
+    });
+
+    // Auto-trigger audio on first touch/click/scroll
+    function autoStartOnFirstTouch() {
+      if (!isPlaying) {
+        playAudio();
+      }
+      document.removeEventListener('click', autoStartOnFirstTouch);
+      document.removeEventListener('touchstart', autoStartOnFirstTouch);
+      document.removeEventListener('scroll', autoStartOnFirstTouch);
+    }
+    document.addEventListener('click', autoStartOnFirstTouch);
+    document.addEventListener('touchstart', autoStartOnFirstTouch);
+    document.addEventListener('scroll', autoStartOnFirstTouch);
+
+    // --- 2. Live Countdown Timer (Target: Nov 29, 2026, 09:30 AM IST) ---
+    const weddingDate = new Date("November 29, 2026 09:30:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance > 0) {
+        document.getElementById("days").innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        document.getElementById("hours").innerText = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        document.getElementById("minutes").innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        document.getElementById("seconds").innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+      } else {
+        document.querySelector(".countdown-container").innerHTML = "<div style='grid-column: span 4; text-align:center; font-weight:bold; color:var(--sindoor-red); padding:10px;'>The Auspicious Celebrations Have Begun!</div>";
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // --- 3. Carousel Navigation ---
+    function scrollCarousel(distance) {
+      document.getElementById('memoriesCarousel').scrollBy({ left: distance, behavior: 'smooth' });
+    }
+
+    // --- 4. Falling Flowers & Petals Canvas Simulation ---
+    const canvas = document.getElementById('petals-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const petalColors = [
+      '#FFA500', // Marigold orange
+      '#FFD700', // Chendumalli yellow
+      '#FFFFFF', // Jasmine white
+      '#FFF8DC', // Cream
+      '#D2143A'  // Red rose petal
+    ];
+
+    const petals = [];
+    const PETAL_COUNT = 32;
+
+    for (let i = 0; i < PETAL_COUNT; i++) {
+      petals.push({
+        x: Math.random() * width,
+        y: Math.random() * height - height,
+        size: Math.random() * 8 + 6,
+        color: petalColors[Math.floor(Math.random() * petalColors.length)],
+        speedX: Math.random() * 1.5 - 0.75,
+        speedY: Math.random() * 1.8 + 1,
+        rotation: Math.random() * 360,
+        rotSpeed: Math.random() * 2 - 1,
+        oscillationSpeed: Math.random() * 0.03 + 0.01,
+        oscillationWidth: Math.random() * 2 + 1,
+        step: Math.random() * 100
+      });
+    }
+
+    function animatePetals() {
+      ctx.clearRect(0, 0, width, height);
+
+      petals.forEach(p => {
+        p.step += p.oscillationSpeed;
+        p.x += Math.sin(p.step) * p.oscillationWidth + p.speedX;
+        p.y += p.speedY;
+        p.rotation += p.rotSpeed;
+
+        if (p.y > height + 20) {
+          p.y = -20;
+          p.x = Math.random() * width;
+        }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(p.size, -p.size/2, p.size, p.size, 0, p.size * 1.6);
+        ctx.bezierCurveTo(-p.size, p.size, -p.size, -p.size/2, 0, 0);
+        ctx.fill();
+        ctx.restore();
+      });
+
+      requestAnimationFrame(animatePetals);
+    }
+    animatePetals();
+  </script>
+</body>
+</html>
